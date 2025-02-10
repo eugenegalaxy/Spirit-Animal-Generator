@@ -4,8 +4,12 @@ import random
 import time
 import torch
 from diffusers import StableDiffusionPipeline
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 app = Flask(__name__)
+
+limiter = Limiter(get_remote_address, app=app, default_limits=["50 per hour"])
 
 CHIMERA_CHANCE = 0.1
 WORDS_DIR = os.path.join(os.path.dirname(__file__), 'words')
@@ -62,12 +66,13 @@ def generate_image(prompt):
     pipe.enable_xformers_memory_efficient_attention()
     pipe.enable_attention_slicing()
     image = pipe(prompt, num_inference_steps=STABLE_DIFFUSION_NUM_STEPS, guidance_scale=STABLE_DIFFUSION_GUIDANCE_SCALE).images[0]
-    filename = f"test_output_{int(time.time())}.png"
+    filename = f"image_{int(time.time())}.png"
     image_path = os.path.join(IMAGES_DIR, filename)
     image.save(image_path)
     return filename
 
 @app.route('/generate', methods=['GET'])
+@limiter.limit("5 per minute")  # 5 requests per minute per IP
 def generate():
     prompt, name = generate_prompt()
     if not prompt:
