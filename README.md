@@ -64,20 +64,24 @@ docker ps
 If you see `flask-app` running, it’s working!
 
 ### **2️⃣ Expose Flask to the Internet Using Ngrok**
-Run Ngrok to create a public URL for your Flask server:
+
+In Ngrok Dashboard, setup a new domain/endpoint (need to authorize local via CLI):
+https://dashboard.ngrok.com/get-started/your-authtoken
+
+Run Ngrok with URL assigned on Ngrok Dashboard for your Flask server:
 ```bash
-ngrok http 5000
+ngrok http 5000 --url=discrete-ape-locally.ngrok-free.app
 ```
 Ngrok will generate an HTTPS URL like:
 ```
-Forwarding https://abcd-1234.ngrok-free.app -> http://localhost:5000
+Forwarding https://discrete-ape-locally.ngrok-free.app -> http://localhost:5000
 ```
 Copy this URL, as it will be used in the **Next.js frontend**.
 
 ### **3️⃣ Test the Server**
 You can test your server with:
 ```bash
-curl https://abcd-1234.ngrok-free.app/generate
+curl https://discrete-ape-locally.ngrok-free.app/generate
 ```
 Or use the provided **client_local_test.py** script.
 
@@ -113,3 +117,20 @@ export async function POST(req: Request) {
 ✅ **Rate-limiting added** to prevent bot abuse  
 
 
+## **📌 5. EXTRA - Docker CLI commands run only with "sudo"?**
+
+This is a common issue with Docker on Linux systems. To resolve this, you need to add your user to the docker group. Here's how to fix it:
+
+1. Create the docker group if it doesn't exist (it probably already exists):
+```bash
+sudo groupadd docker
+```
+2. Add your user to the docker group:
+```bash
+sudo usermod -aG docker $USER
+```
+3. Log out and log back in for the group changes to take effect. Alternatively, you can run:
+```bash
+sudo newgrp docker
+```
+After doing this, you should be able to run Docker commands without sudo. You can verify it works by running:

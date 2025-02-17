@@ -88,11 +88,14 @@ def generate():
 
 @app.route('/images/<filename>', methods=['GET'])
 def get_image(filename):
-    """Serve generated images."""
     image_path = os.path.join(IMAGES_DIR, filename)
     if not os.path.exists(image_path):
-        return jsonify({"error": "Image not found"}), 404
-    return send_file(image_path, mimetype='image/png')
+        response = jsonify({"error": "Image not found"})
+        response.status_code = 404
+        return response
+    response = send_file(image_path, mimetype='image/png')
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
