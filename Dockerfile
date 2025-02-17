@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN pip install --no-cache-dir flask torch diffusers transformers accelerate xformers flask-limiter flask-cors
+RUN pip install --no-cache-dir flask torch diffusers transformers accelerate xformers flask-limiter
 
 # Expose Flask port
 EXPOSE 5000
