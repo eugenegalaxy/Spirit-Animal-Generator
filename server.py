@@ -55,7 +55,9 @@ def generate_prompt():
     words = [get_random_word_from_file(os.path.join(WORDS_DIR, file)) for file in files]
     words = [word for word in words if word]  # Remove None values
     
-    prompt = f"Highly detailed illustration of a {animal_description}, with natural anatomy, " + ', '.join(words)
+    general_style = get_random_word_from_file(os.path.join(WORDS_DIR, 'general_style.txt')) or "Highly detailed illustration"
+
+    prompt = f"{general_style} of a {animal_description}, with natural anatomy, " + ', '.join(words)
     
     return prompt, name
 
