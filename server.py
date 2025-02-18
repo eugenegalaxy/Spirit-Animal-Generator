@@ -24,6 +24,17 @@ if not os.path.exists(IMAGES_DIR):
     os.makedirs(IMAGES_DIR)
 
 
+# Preload the Stable Diffusion pipeline on server startup
+PIPELINE = StableDiffusionPipeline.from_pretrained(
+    STABLE_DIFFUSION_MODEL_ID,
+    torch_dtype=torch.float16,
+    safety_checker=None,
+    local_files_only=True
+).to("cuda")
+PIPELINE.enable_xformers_memory_efficient_attention()
+PIPELINE.enable_attention_slicing()
+
+
 def get_random_word_from_file(file_path):
     """Reads a file and returns a random word or phrase from it."""
     try:
@@ -65,12 +76,8 @@ def generate_prompt():
 
 
 def generate_image(prompt):
-    """Generates an image and returns its filename."""
-    model_id = STABLE_DIFFUSION_MODEL_ID
-    pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16, safety_checker=None, local_files_only=True).to("cuda")
-    pipe.enable_xformers_memory_efficient_attention()
-    pipe.enable_attention_slicing()
-    image = pipe(prompt, num_inference_steps=STABLE_DIFFUSION_NUM_STEPS, guidance_scale=STABLE_DIFFUSION_GUIDANCE_SCALE).images[0]
+    """Generates an image and returns its filename using the preloaded pipeline."""
+    image = PIPELINE(prompt, num_inference_steps=STABLE_DIFFUSION_NUM_STEPS, guidance_scale=STABLE_DIFFUSION_GUIDANCE_SCALE).images[0]
     filename = f"image_{int(time.time())}.png"
     image_path = os.path.join(IMAGES_DIR, filename)
     image.save(image_path)
