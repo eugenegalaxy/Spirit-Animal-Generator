@@ -1,6 +1,6 @@
 aardvark, albatross, alligator, alpaca, anaconda, ant, anteater, antelope, ape, armadillo, axolotl, baboon, badger, bandicoot, basilisk, bat,
 beaver, bee, beetle, bison, blackbird, boar, bobcat, bonobo, buffalo, bullfrog, butterfly, buzzard, camel, capybara, cardinal, caribou, cassowary,
-cat, centipede, chameleon, cheetah, chimpanzee, chinchilla, chipmunk, cobra, cockatoo, condor, coral, cormorant, cougar, cow, coyote, crab, crane,
+cat, chameleon, cheetah, chimpanzee, chinchilla, chipmunk, cobra, cockatoo, condor, coral, cormorant, cougar, cow, coyote, crab, crane,
 crocodile, crow, cuckoo, cuttlefish, dingo, diplodocus, dodo, dog, dolphin, donkey, dormouse, dragon, dragonfly, duck, dugong, eagle, echidna, egret,
 elephant, elk, emu, falcon, ferret, finch, firefly, fish, flamingo, fox, frog, gazelle, gecko, gerbil, gibbon, giraffe, goat, goose, gorilla, griffon,
 grouse, guanaco, guineafowl, gull, hamster, hare, hawk, hedgehog, heron, hippopotamus, horse, hummingbird, husky, hyena, ibex, ibis, iguana, impala,
