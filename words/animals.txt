@@ -5,11 +5,11 @@ crocodile, crow, cuckoo, cuttlefish, dingo, diplodocus, dodo, dog, dolphin, donk
 elephant, elk, emu, falcon, ferret, finch, firefly, fish, flamingo, fox, frog, gazelle, gecko, gerbil, gibbon, giraffe, goat, goose, gorilla, griffon,
 grouse, guanaco, guineafowl, gull, hamster, hare, hawk, hedgehog, heron, hippopotamus, horse, hummingbird, husky, hyena, ibex, ibis, iguana, impala,
 jackal, jaguar, jellyfish, kangaroo, kingfisher, kiwi, koala, komodo, kraken, ladybug, langur, lemur, leopard, liger, lion, lizard, llama, lobster,
-lynx, macaw, magpie, manatee, mandrill, marmot, meerkat, mole, mongoose, monkey, moose, mountain lion, mouse, narwhal, newt, nightingale, ocelot,
+lynx, macaw, magpie, manatee, mandrill, marmot, meerkat, mole, mongoose, monkey, moose, mountain lion, mouse, narwhal, newt, ocelot,
 octopus, okapi, opossum, orangutan, orca, ostrich, otter, owl, ox, oyster, panda, panther, parakeet, parrot, partridge, peacock, pelican, penguin,
 pheasant, phoenix, pig, pigeon, piranha, platypus, polar bear, porcupine, porpoise, possum, prairie dog, pufferfish, puffin, python, quail, quokka,
 quoll, rabbit, raccoon, ram, rattlesnake, raven, reindeer, rhino, roadrunner, rooster, salamander, sandpiper, scorpion, sea lion, seahorse, seal,
 serval, shark, sheep, skunk, sloth, slug, snail, snake, snow leopard, sparrow, spider, squid, squirrel, starfish, stingray, stoat, stork, swallow,
 swan, swordfish, tadpole, tapir, tarantula, termite, tern, thrush, tiger, toad, tortoise, toucan, trout, tuna, turkey, turtle, unicorn, vampire bat,
-viper, vole, vulture, walrus, warthog, wasp, weasel, whale, wild boar, wildebeest, wolf, wolverine, wombat, woodpecker, worm, wren, yak, yeti crab,
+viper, vole, vulture, walrus, warthog, wasp, weasel, whale, wild boar, wildebeest, wolf, wombat, woodpecker, worm, wren, yak, yeti crab,
 zebra, zorilla, guinea pig, sugar glider, red panda, tarsier, slow loris, pika, wallaby, canary, lovebird, deer, fennec fox
