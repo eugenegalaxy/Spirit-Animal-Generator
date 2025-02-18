@@ -23,6 +23,7 @@ STABLE_DIFFUSION_GUIDANCE_SCALE = 12
 if not os.path.exists(IMAGES_DIR):
     os.makedirs(IMAGES_DIR)
 
+
 def get_random_word_from_file(file_path):
     """Reads a file and returns a random word or phrase from it."""
     try:
@@ -34,11 +35,12 @@ def get_random_word_from_file(file_path):
         print(f"Error reading {file_path}: {e}")
         return None
 
+
 def generate_prompt():
     """Generates a prompt and a name."""
     if not os.path.exists(WORDS_DIR):
         return None, None
-    
+
     # Chimera chance
     if random.random() < CHIMERA_CHANCE:
         animal1 = get_random_word_from_file(os.path.join(WORDS_DIR, 'animals.txt')) or "mystical creature"
@@ -46,20 +48,21 @@ def generate_prompt():
         animal_description = f"{animal1}-{animal2} chimera"
     else:
         animal_description = get_random_word_from_file(os.path.join(WORDS_DIR, 'animals.txt')) or "mystical creature"
-    
+
     adjective = get_random_word_from_file(os.path.join(WORDS_DIR, 'adjectives.txt')) or "mysterious"
     symbolism = get_random_word_from_file(os.path.join(WORDS_DIR, 'symbolism.txt')) or "wanders"
     name = f"{adjective.title()} {animal_description.title()} of {symbolism.title()}"
-    
+
     files = [f for f in os.listdir(WORDS_DIR) if f.endswith('.txt') and f != 'animals.txt']
     words = [get_random_word_from_file(os.path.join(WORDS_DIR, file)) for file in files]
     words = [word for word in words if word]  # Remove None values
-    
+
     general_style = get_random_word_from_file(os.path.join(WORDS_DIR, 'general_style.txt')) or "Highly detailed illustration"
 
     prompt = f"{general_style} of a {animal_description}, with natural anatomy, " + ', '.join(words)
-    
+
     return prompt, name
+
 
 def generate_image(prompt):
     """Generates an image and returns its filename."""
@@ -73,20 +76,22 @@ def generate_image(prompt):
     image.save(image_path)
     return filename
 
+
 @app.route('/generate', methods=['GET'])
 @limiter.limit("5 per minute")  # 5 requests per minute per IP
 def generate():
     prompt, name = generate_prompt()
     if not prompt:
         return jsonify({"error": "Failed to generate prompt"}), 500
-    
+
     image_filename = generate_image(prompt)
-    
+
     return jsonify({
         "title": name,
         "prompt": prompt,
         "image": f"/images/{image_filename}"
     })
+
 
 @app.route('/images/<filename>', methods=['GET'])
 def get_image(filename):
@@ -98,6 +103,7 @@ def get_image(filename):
     response = send_file(image_path, mimetype='image/png')
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
